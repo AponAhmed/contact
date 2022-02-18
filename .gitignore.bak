@@ -1,4 +1,3 @@
-composer.phar
 *.log
 vendor/
 node_modules/
