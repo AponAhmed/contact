@@ -1,0 +1,56 @@
+
+/* 
+    Created on : Dec 20, 2021, 3:22:00 PM
+    Author     : apon
+*/
+.entry-title.contact-title {
+    margin-bottom: 15px;
+}
+.contactForm {
+    margin-top: 18px;
+}
+.input-wrap {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 12px;
+}
+.input-wrap label {
+    margin-bottom: 0;
+}
+#contactForm .contactFormField {
+    padding: 2px 10px;
+    line-height: 1.8;
+    margin: 0;
+    border: 1px solid #999;
+}
+.question label {
+    margin: 0;
+    padding: 4px 15px;
+    line-height: 1.8;
+    flex-basis: 120px;
+    background: #ddd;
+}
+#contactForm  .question .contactFormField {
+    width: 100%;
+    flex-grow: 1;
+    border:none;
+}
+.question {
+    display: flex;
+    align-items: center;
+    border: 1px solid #999;
+}
+textarea.contactFormField{
+    min-height:200px;
+}
+#contactForm #submitBtn {
+    margin-top: 15px;
+    padding: 2px 20px;
+    line-height: 1.8;
+    text-transform: uppercase;
+}
+.address-area h3, .address-area strong {
+    background: #f6f6f6;
+    padding: 5px 12px;
+    font-size: 20px;
+}
