@@ -137,7 +137,9 @@ class GapiContact {
                 </div>
             </form>
             <script>
-                window.onload = contactForm_init
+                window.addEventListener('load', (event) => {
+                    contactForm_init();
+                });
             </script>
         </div>
         <?php
