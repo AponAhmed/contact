@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/plugins/hello-dolly/
   Description: Contact Plugin with Gmail API
   Author: SiATEX
-  Version: 1.1
+  Version: 1.1.1
   Author URI: http://siatex.com/
  */
 
@@ -36,6 +36,10 @@ class GapiContact {
         } else {
             $this->init();
         }
+    }
+
+    static function _unstall() {
+        //delete_option('gmailApiCredentials');
     }
 
     public function contactActionAjax() {

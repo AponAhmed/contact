@@ -23,6 +23,9 @@
     margin: 0;
     border: 1px solid #999;
 }
+#contactForm button#submitBtn {
+    background: var(--primary-color);
+}
 .question label {
     margin: 0;
     padding: 4px 15px;

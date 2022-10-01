@@ -188,7 +188,7 @@ class Admin {
         <form id="gApiCcofigForm">
             <div class="gApiContactConfig">
                 <label>Credentials
-                    <span class="crdDisc description">Create App and use credentials from <a target="_new" href="https://console.cloud.google.com/apis/credentials?project=gapicontact">Google Api Console</a> </span>
+                    <span class="crdDisc description">Create App and use credentials from <a target="_new" href="https://console.cloud.google.com/apis/credentials?project=gmailapi-364203">Google Api Console</a> </span>
                 </label>
                 <div class="fieldArea">
                     <!--<div class="upload-area">
