@@ -39,7 +39,8 @@ class GapiContact {
     }
 
     static function _unstall() {
-        //delete_option('gmailApiCredentials');
+        delete_option('gmailApiCredentials');
+        delete_option('gmailApiToken');
     }
 
     public function contactActionAjax() {

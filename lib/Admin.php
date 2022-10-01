@@ -184,9 +184,16 @@ class Admin {
     }
 
     private function SetConfig() {
+        $actual_link = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
         ?>
         <form id="gApiCcofigForm">
             <div class="gApiContactConfig">
+                <label>Redirect Url</label>
+                <div class="fieldArea">
+                    <input id="redirectUrl" value="<?php echo $actual_link ?>" style="width:100%"  type="text">
+                </div><!-- comment -->
+            </div>
+            <div class="gApiContactConfig">                
                 <label>Credentials
                     <span class="crdDisc description">Create App and use credentials from <a target="_new" href="https://console.cloud.google.com/apis/credentials?project=gmailapi-364203">Google Api Console</a> </span>
                 </label>
