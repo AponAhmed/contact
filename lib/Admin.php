@@ -112,7 +112,8 @@ class Admin {
     private function login() {
         $link = $this->gmailApi->client->createAuthUrl();
         echo "<a href='$link' class=\"google-login button action\"><span style=\"padding: 4px 0;\" class=\"dashicons dashicons-google\"></span> Login</a>";
-        echo "<br>Login With Google Account";
+        $time=time();
+        echo "<br>Login With Google Account | <a href='options-general.php?page=mail-admin&remove-config=$time'>Remove Config</a>";
     }
 
     public function adminConfig() {
