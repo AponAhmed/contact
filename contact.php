@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/plugins/hello-dolly/
   Description: Contact Plugin with Gmail API
   Author: SiATEX
-  Version: 1.1.2
+  Version: 1.1.3
   Author URI: http://siatex.com/
  */
 
@@ -141,7 +141,7 @@ class GapiContact {
                     <label id="question"></label>
                     <input id="ans" class="contactFormField" type="text" required="">
                 </div>
-                <div>
+                <div class="contact-footer">
                     <button type="submit" id="submitBtn" class="contactFormButton">Send</button>
                     <span class="contactMsg"></span>
                 </div>

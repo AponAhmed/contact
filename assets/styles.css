@@ -47,7 +47,6 @@ textarea.contactFormField{
     min-height:200px;
 }
 #contactForm #submitBtn {
-    margin-top: 15px;
     padding: 2px 20px;
     line-height: 1.8;
     text-transform: uppercase;
@@ -56,4 +55,62 @@ textarea.contactFormField{
     background: #f6f6f6;
     padding: 5px 12px;
     font-size: 20px;
+}
+.contact-form {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+.contact-footer {
+    display: flex;
+    align-items: center;
+    margin-top: 15px;
+}
+.spinLoader {
+    position: relative;
+    width: 20px;
+    height: 21px;
+    display: inline-block;
+    margin: 0 10px;
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+}
+.spinLoader i {
+    width: 20px;
+    height: 1px;
+    background: #999;
+    display: block;
+    position: absolute;
+    left: 0;
+    top: 10px;
+}
+.spinLoader i:nth-child(1) {
+    transform:  rotate(20deg);
+}
+.spinLoader i:nth-child(2) {
+    transform:  rotate(40deg);
+}
+.spinLoader i:nth-child(3) {
+    transform:  rotate(60deg);
+}
+.spinLoader i:nth-child(4) {
+    transform:  rotate(80deg);
+}
+.spinLoader i:nth-child(5) {
+    transform:  rotate(100deg);
+}
+.spinLoader i:nth-child(6) {
+    transform:  rotate(120deg);
+}
+
+@keyframes spin {
+    from {
+        transform:rotate(0deg)
+    }
+    to {
+        transform:rotate(360deg)
+    }
 }
