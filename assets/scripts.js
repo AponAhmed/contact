@@ -1,5 +1,6 @@
 
 var total;
+var iconHtm;
 
 function getRandom() {
     return Math.ceil(Math.random() * 20)
@@ -61,4 +62,18 @@ function contactForm_init() {
             }
         });
     })
+}
+
+function trigFloated(_this) {
+    let act = jQuery(_this);
+    if (act.attr('data-action') == 'open') {
+        iconHtm = act.html();
+        jQuery('.floated-contact-form-wrap').addClass('open');
+        act.attr('data-action', 'close');
+        act.html('<span class="close-floated"></span>');
+    } else {
+        jQuery('.floated-contact-form-wrap').removeClass('open');
+        act.attr('data-action', 'open');
+        act.html(iconHtm);
+    }
 }

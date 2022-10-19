@@ -9,6 +9,8 @@
 .contactForm {
     margin-top: 18px;
 }
+
+
 .input-wrap {
     display: flex;
     flex-direction: column;
@@ -87,6 +89,9 @@ textarea.contactFormField{
     left: 0;
     top: 10px;
 }
+.contactMsg {
+    margin-left: 15px;
+}
 .spinLoader i:nth-child(1) {
     transform:  rotate(20deg);
 }
@@ -112,5 +117,114 @@ textarea.contactFormField{
     }
     to {
         transform:rotate(360deg)
+    }
+}
+
+/*Floated Contact*/
+.floated-contact-triger {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    z-index: 9999;
+    padding: 15px;
+    line-height: 1;
+    background: rgb(229, 226, 223);
+    border-radius: 50px;
+    width: 65px;
+    height: 65px;
+    display: flex;
+    align-items: center;
+}
+.floated-contact-form-wrap {
+    position: fixed;
+    right: 30px;
+    bottom: 104px;
+    padding: 20px;
+    background: #fff;
+    z-index: 999999;
+    border: 1px solid #f0f0f0;
+    width: 360px;
+    border-top: 3px solid var(--primary-color);
+    border-bottom: 1px solid var(--primary-color);
+    display: none;
+}
+.floated-contact-form-wrap.open{
+    display: block;
+}
+.floated-contact-form-wrap .input-wrap label {
+    color: #828282;
+    font-size: 16px;
+}
+.floated-contact-form-wrap  #contactForm .contactFormField {
+    border: 1px solid #ccc;
+    border-radius: 0;
+}
+.floated-contact-form-wrap .input-wrap.gac-subject-in{
+    display: none;
+}
+.floated-contact-form-wrap .contactForm {
+    margin-top: 0;
+}
+.question label {
+    font-size: 15px;
+    padding: 4px 8px;
+}
+.floated-contact-form-wrap #contactForm .question .contactFormField{
+    border:none;
+}
+.floated-contact-form-wrap .question {
+    border: 1px solid #ccc;
+}
+
+.floated-contact-form-wrap textarea.contactFormField {
+    height: 100px;
+    min-height: initial;
+    max-width: 100%;
+}
+.floated-contact-form-wrap  .input-wrap {
+    margin-bottom: 4px;
+}
+
+.close-floated {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+.close-floated::before {
+    width: 40px;
+    height: 2px;
+    background: #000;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(45deg);
+}
+
+.close-floated::after {
+    width: 40px;
+    height: 2px;
+    background: #000;
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%,-50%) rotate(-45deg);
+}
+
+/*Small Divice*/
+@media only screen and (max-width: 580px){
+    .floated-contact-form-wrap {
+        width: 100%;
+        height: 100%;
+        left: 0;
+        right: initial;
+        top: 0;
+        padding: 80px 25px;
+    }
+    .floated-contact-triger {
+        z-index: 9999999;
     }
 }

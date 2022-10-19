@@ -112,7 +112,7 @@ class Admin {
     private function login() {
         $link = $this->gmailApi->client->createAuthUrl();
         echo "<a href='$link' class=\"google-login button action\"><span style=\"padding: 4px 0;\" class=\"dashicons dashicons-google\"></span> Login</a>";
-        $time=time();
+        $time = time();
         echo "<br>Login With Google Account | <a href='options-general.php?page=mail-admin&remove-config=$time'>Remove Config</a>";
     }
 
@@ -123,8 +123,18 @@ class Admin {
         $tracking = get_option('send_with_tracking');
         $secondMailOp = get_option('second_mailOption');
         //var_dump($name,$email,$SuEmail);
+        $floated = get_option('floated-contact');
         ?>
         <form id="adminFonfig">
+            <div class="optionField">
+                <label>Floated Contact</label>
+                <div class="input-wrap">
+                    <input type="hidden" name="data[floated-contact]" value="0">
+                    <label><input style='min-width: 16px;' type="checkbox" <?php echo $floated == '1' ? 'checked' : '' ?> value="1" name="data[floated-contact]"> Enable</label>
+                    <span class="description">Enable floated Contact Form in every page</span>
+                </div>
+            </div>
+            <hr>
             <div class="max-w5">
                 <div class="optionField">
                     <label>Admin Name</label>

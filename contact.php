@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/plugins/hello-dolly/
   Description: Contact Plugin with Gmail API
   Author: SiATEX
-  Version: 1.1.3
+  Version: 1.1.4
   Author URI: http://siatex.com/
  */
 
@@ -109,7 +109,6 @@ class GapiContact {
             $message = $traking2 . "<br>" . $orgBody;
             $gmail->send($AdminEmail, $subject, $message, $options);
         }
-
         return $message;
     }
 
@@ -117,8 +116,23 @@ class GapiContact {
      * Initialize for Front-End
      */
     public function init() {
+        $floated = get_option('floated-contact');
+        if ($floated == "1") {
+            add_action('wp_footer', [$this, 'floated_contact']);
+        }
         add_shortcode('contactForm', [$this, 'contactForm']);
         add_action('wp_enqueue_scripts', array($this, 'frontEndScript'));
+    }
+
+    function floated_contact() {
+        ob_start();
+        $this->contactForm();
+        $form = ob_get_clean();
+        $icon = '<svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44" data-ux="Icon" class="x-el x-el-svg c2-1 c2-2 c2-4d c2-t c2-1g c2-3 c2-4 c2-5 c2-6 c2-7 c2-8"><g fill="currentColor"><rect x="4" y="6" width="16" height="10.222" rx="1.129"></rect><path d="M8.977 18.578l.2-2.722a.564.564 0 01.564-.523h3.61c.548 0 .774.705.327 1.024l-3.81 2.721a.564.564 0 01-.89-.5z"></path></g></svg>';
+        //<div class="contact-wrap-header"><span onclick="closeFlotedContact(this)">&times;</span></div>
+        $htm = '<div class="floated-contact-form-wrap">' . $form . '</div>';
+        $htm .= '<div class="floated-contact-triger" data-action="open" onclick="trigFloated(this)">' . $icon . '</div>';
+        echo $htm;
     }
 
     function frontEndScript() {
@@ -133,10 +147,10 @@ class GapiContact {
         ?>
         <div class="contactForm">
             <form id="contactForm">
-                <div class="input-wrap"><label>Your Name (required)</label><input name="name" type="text" class="contactFormField" required=""> </div>
-                <div class="input-wrap"><label>Your Email (required)</label><input name="email" type="email" class="contactFormField" required=""> </div>
-                <div class="input-wrap"><label>Subject</label><input name="subject" type="text" class="contactFormField"> </div>
-                <div class="input-wrap"><label>Message</label><textarea class="contactFormField" name="message" required=""></textarea></div>
+                <div class="input-wrap gac-name-in"><label>Your Name (required)</label><input name="name" type="text" class="contactFormField" required=""> </div>
+                <div class="input-wrap gac-email-in"><label>Your Email (required)</label><input name="email" type="email" class="contactFormField" required=""> </div>
+                <div class="input-wrap gac-subject-in"><label>Subject</label><input name="subject" type="text" class="contactFormField"> </div>
+                <div class="input-wrap gac-message-in"><label>Message</label><textarea class="contactFormField" name="message" required=""></textarea></div>
                 <div class="question">
                     <label id="question"></label>
                     <input id="ans" class="contactFormField" type="text" required="">
