@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/plugins/hello-dolly/
   Description: Contact Plugin with Gmail API
   Author: SiATEX
-  Version: 1.1.4
+  Version: 1.1.5
   Author URI: http://siatex.com/
  */
 
@@ -70,7 +70,7 @@ class GapiContact {
         $SuEmail = get_option('supervisor_email');
         $secondMailOp = get_option('second_mailOption');
 
-        $subject = $data['subject'];
+        $subject = stripslashes($data['subject']);
         $message = nl2br($data['message']); //Orginal Message       
         //Traking information
         $clientIP = $gmail->getClientIP();
@@ -85,7 +85,7 @@ class GapiContact {
         if (!empty($data['reff'])) {
             $traking .= "<br/><br/>\n<b>Referer Page:</b> " . $data['reff'];
         }
-        $messageWithTreaking = $message . $traking;
+        $messageWithTreaking = stripslashes($message . $traking);
         //Traking 
         $options = [
             'fromName' => $data['name'],
@@ -106,7 +106,8 @@ class GapiContact {
             $traking2 .= "<br/>\n<b>Date:</b> " . date("F d, Y");
             $traking2 .= "<br/><b>Website:</b> " . get_site_url();
             $traking2 .= "<br/>";
-            $message = $traking2 . "<br>" . $orgBody;
+            $message = stripslashes($traking2 . "<br>" . $orgBody);
+            
             $gmail->send($AdminEmail, $subject, $message, $options);
         }
         return $message;
@@ -128,9 +129,9 @@ class GapiContact {
         ob_start();
         $this->contactForm();
         $form = ob_get_clean();
-        $icon = '<svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44" data-ux="Icon" class="x-el x-el-svg c2-1 c2-2 c2-4d c2-t c2-1g c2-3 c2-4 c2-5 c2-6 c2-7 c2-8"><g fill="currentColor"><rect x="4" y="6" width="16" height="10.222" rx="1.129"></rect><path d="M8.977 18.578l.2-2.722a.564.564 0 01.564-.523h3.61c.548 0 .774.705.327 1.024l-3.81 2.721a.564.564 0 01-.89-.5z"></path></g></svg>';
-        //<div class="contact-wrap-header"><span onclick="closeFlotedContact(this)">&times;</span></div>
-        $htm = '<div class="floated-contact-form-wrap">' . $form . '</div>';
+        $icon = '<svg viewBox="0 0 24 24" fill="currentColor" width="44" height="44"><g fill="currentColor"><rect x="4" y="6" width="16" height="10.222" rx="1.129"></rect><path d="M8.977 18.578l.2-2.722a.564.564 0 01.564-.523h3.61c.548 0 .774.705.327 1.024l-3.81 2.721a.564.564 0 01-.89-.5z"></path></g></svg>';
+        $head = '<div class="contact-wrap-header"><span class="shortly-msg">Hi! Let us know how we can help and we’ll respond shortly.</span></div>';
+        $htm = '<div class="floated-contact-form-wrap">' . $head . $form . '</div>';
         $htm .= '<div class="floated-contact-triger" data-action="open" onclick="trigFloated(this)">' . $icon . '</div>';
         echo $htm;
     }
