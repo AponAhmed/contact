@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/plugins/hello-dolly/
   Description: Contact Plugin with Gmail API
   Author: SiATEX
-  Version: 1.1.5
+  Version: 1.1.7
   Author URI: http://siatex.com/
  */
 
@@ -29,6 +29,8 @@ class GapiContact {
         add_action('wp_ajax_contactActionAjax', [$this, 'contactActionAjax']);
         add_action('wp_ajax_nopriv_contactActionAjax', [$this, 'contactActionAjax']);
 
+        add_shortcode('write-us', [$this, 'write_us_button_callback']);
+
         if (isset($_GET['remove-config']) && (time() - $_GET['remove-config']) < 60) {
             delete_option("gmailApiCredentials");
             header('location:options-general.php?page=mail-admin');
@@ -43,6 +45,10 @@ class GapiContact {
         }
     }
 
+    function write_us_button_callback() {
+        return "<button class='write-us-btn' onclick='writeus()'>Write Us</button>";
+    }
+
     static function _unstall() {
         delete_option('gmailApiCredentials');
         delete_option('gmailApiToken');
@@ -51,7 +57,15 @@ class GapiContact {
     public function contactActionAjax() {
         @ini_set('display_errors', 1);
         $data = array();
-        parse_str($_POST['data'], $data);
+        if (!is_array($_POST['data'])) {
+            parse_str($_POST['data'], $data);
+        } else {
+            $data = $_POST['data'];
+        }
+//        //var_dump($data);
+//        echo json_encode(['message' => "Sucessfully Sent.", "error" => false]);
+//
+//        exit;
         $res = $this->sendEmail($data);
         if ($res) {
             echo json_encode(['message' => "Sucessfully Sent.", "error" => false]);
@@ -107,7 +121,7 @@ class GapiContact {
             $traking2 .= "<br/><b>Website:</b> " . get_site_url();
             $traking2 .= "<br/>";
             $message = stripslashes($traking2 . "<br>" . $orgBody);
-            
+
             $gmail->send($AdminEmail, $subject, $message, $options);
         }
         return $message;
@@ -156,6 +170,7 @@ class GapiContact {
                     <label id="question"></label>
                     <input id="ans" class="contactFormField" type="text" required="">
                 </div>
+
                 <div class="contact-footer">
                     <button type="submit" id="submitBtn" class="contactFormButton">Send</button>
                     <span class="contactMsg"></span>
