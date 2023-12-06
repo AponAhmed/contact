@@ -124,6 +124,7 @@ class Admin {
         $secondMailOp = get_option('second_mailOption');
         //var_dump($name,$email,$SuEmail);
         $floated = get_option('floated-contact');
+        $excfloated = get_option('exc_floated');
         ?>
         <form id="adminFonfig">
             <div class="optionField">
@@ -131,7 +132,8 @@ class Admin {
                 <div class="input-wrap">
                     <input type="hidden" name="data[floated-contact]" value="0">
                     <label><input style='min-width: 16px;' type="checkbox" <?php echo $floated == '1' ? 'checked' : '' ?> value="1" name="data[floated-contact]"> Enable</label>
-                    <span class="description">Enable floated Contact Form in every page</span>
+                    <span class="description">Enable floated Contact Form in every page excerpt below post IDs in Field</span>
+                    <input type="text" name="data[exc_floated]" placeholder="Excerpts - Comma seperated ID" value="<?php echo $excfloated ?>">
                 </div>
             </div>
             <hr>

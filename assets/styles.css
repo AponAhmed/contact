@@ -237,13 +237,16 @@ textarea.contactFormField{
 .write-us-btn {
     background: var(--primary-color);
     border-radius: 4px;
-    padding: 5px 34px;
+    padding: 0px 20px;
     cursor: pointer;
     color: #fff;
     border: 1px solid #0e4771;
     line-height: 1.6;
     margin-top: 15px;
+    width: auto;
+    height: 40px;
 }
+
 .write-us {
     position: fixed;
     top: 0;

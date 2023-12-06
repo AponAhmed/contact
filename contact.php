@@ -4,7 +4,7 @@
   Plugin URI: http://wordpress.org/plugins/hello-dolly/
   Description: Contact Plugin with Gmail API
   Author: SiATEX
-  Version: 1.1.7
+  Version: 1.2.2
   Author URI: http://siatex.com/
  */
 
@@ -45,8 +45,11 @@ class GapiContact {
         }
     }
 
-    function write_us_button_callback() {
-        return "<button class='write-us-btn' onclick='writeus()'>Write Us</button>";
+    function write_us_button_callback($atts) {
+        $atts = shortcode_atts(array(
+            'text' => 'Write Us'
+                ), $atts, 'write-us');
+        return "<div class='write-us-area'><button class='write-us-btn' onclick='writeus()'>$atts[text]</button></div>";
     }
 
     static function _unstall() {
@@ -75,7 +78,7 @@ class GapiContact {
         wp_die(); //End Request
     }
 
-    function sendEmail($data) {
+      function sendEmail($data) {
         $gmail = new GmailApi();
         $AdminName = get_option('admin_name');
         $AdminEmail = get_option('admin_email');
@@ -140,6 +143,14 @@ class GapiContact {
     }
 
     function floated_contact() {
+        $id = get_queried_object_id();
+        $excfloated = get_option('exc_floated');
+        $idArr = explode(",", $excfloated);
+
+        if (in_array($id, $idArr) != false) {
+            return;
+        }
+
         ob_start();
         $this->contactForm();
         $form = ob_get_clean();
